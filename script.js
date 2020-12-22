@@ -11,6 +11,7 @@ const TODOS_LS = "toDos";
 let toComplete = [];
 const COMPLETE_LS = "toComplete";
 
+//localStorage에서 delete하는 함수
 function deleteToDo(event) {
   const btn = event.target;
   const li = btn.parentNode.parentNode; // btn.parentNode가 innerHtml로 인해 button 이었다. list를 삭제해야 하므로 한번더 parentNode 설정
@@ -44,6 +45,7 @@ function deleteToComplete(event) {
   saveComplete();
 }
 
+//localStorage에 저장하는 함수
 function saveToDos() {
   try {
     localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
@@ -69,6 +71,7 @@ function moveComplete(text) {
   paintToComplete(text);
 }
 
+//list에 목록 추가하는 함수
 function paintToComplete(text) {
   const li = document.createElement("ul");
   const delButton = document.createElement("button");
@@ -120,6 +123,7 @@ function paintToDo(text) {
   saveToDos(); //push 한 이후에 저장해야된당
 }
 
+//제출시 동작하는 함수
 function handleSubmit(event) {
   event.preventDefault();
   const currentValue = toDoInput.value;
@@ -129,6 +133,7 @@ function handleSubmit(event) {
   toDoInput.value = ""; //placeholder 초기화
 }
 
+//locatStorage에서 data 읽어오는 함수
 function loadToDos() {
   const loadedToDos = localStorage.getItem(TODOS_LS);
   if (loadedToDos !== null) {
